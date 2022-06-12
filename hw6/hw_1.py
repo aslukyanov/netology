@@ -1,16 +1,25 @@
 
+from re import L
+
+
 class WrongGrade(BaseException) :
     pass
 
 
 class Student:
+
+    list_of_student = []
+
     def __init__(self, name, surname, gender):
+        print("init is called")
         self.name = name
         self.surname = surname
         self.gender = gender
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
+        Student.list_of_student.append(self)
+
 
     def __check_grades(self, marks) :
         self.marks = marks
@@ -92,9 +101,13 @@ class Mentor:
 
 class Lecturer(Mentor) :
     """Someone who gives lecture"""
+
+    list_of_lecturers = []
+
     def __init__(self, name, surname) :
         super().__init__(name, surname)
         self.grades = {}
+        Lecturer.list_of_lecturers.append(self)
 
     def _get_average_grade(self):
         self.result = 0
@@ -169,6 +182,25 @@ class Reviewer(Mentor) :
 
 
 
+def count_average_student_grade(students, course) :
+    summary = 0
+    for student in students :
+        if student.grades.get(course) != None :
+            summary += sum(student.grades.get(course)) / len(student.grades.get(course))
+        else :
+            return f"One os the student does't connect to {course}"
+    return f"Average sdudenr grade is {summary / len(students)}"
+
+
+def count_average_lecturer_grade(lecturers, course) :
+    summary = 0
+    for lecturer in lecturers :
+        if lecturer.grades.get(course) != None :
+            summary += sum(lecturer.grades.get(course)) / len(lecturer.grades.get(course))
+        else :
+            return f"One os the lecturers does't connect to {course}"
+    return f"Average lecturer grde is {summary / len(lecturers)}"
+
 
 if __name__ == "__main__" :
     best_student = Student('Ruoy', 'Eman', 'your_gender')
@@ -241,4 +273,14 @@ if __name__ == "__main__" :
     print()
     print(worst_student == cool_lecturer)
     print(best_student > worst_lecturer)
+
+    # print(Student.list_of_student[0].grades)
+
+
+    print(count_average_student_grade(Student.list_of_student, "Python"))
+    print(count_average_lecturer_grade(Lecturer.list_of_lecturers, "Python"))
+
+
+
+
 
