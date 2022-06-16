@@ -2,7 +2,7 @@
 from pprint import pprint
 
 
-def create_dict_from_file(file_path) :
+def create_dict_from_file(file_path : str) -> dict :
     try :
         with open(file_path, "r") as file :
             print("File has been opened")

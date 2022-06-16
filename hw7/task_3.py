@@ -1,6 +1,6 @@
 
 
-def create_dict_for_write(files, folder) :
+def create_dict_for_write(files : list, folder : str) -> dict :
     wr_dict = {}
     for file in files :
         with open(folder + file, "r") as text :
@@ -9,7 +9,8 @@ def create_dict_for_write(files, folder) :
     return wr_dict
 
 
-def create_new_file(files, folder, new_file_name) :
+def create_new_file(files : list, folder : str, new_file_name : str) :
+    """Create new file contains files from list"""
     wr_dict = create_dict_for_write(files, folder)
     with open(folder + new_file_name, "a") as result :
         for lenght in sorted(list(wr_dict.keys())) :

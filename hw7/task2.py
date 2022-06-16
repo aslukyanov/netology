@@ -4,7 +4,7 @@ from pprint import pprint
 from task1 import create_dict_from_file
 
 
-def get_shop_list_by_dishes(dishes, person_count, file_path_cook_book) :
+def get_shop_list_by_dishes(dishes : list, person_count : int, file_path_cook_book : str) -> dict :
     if not isinstance(person_count, int) and person_count < 0 :
         print("Wrong count of persons")
     cook_book = create_dict_from_file(file_path_cook_book)
