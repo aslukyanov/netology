@@ -81,11 +81,12 @@ values(1, 1),
 
 create table if not exists collections (
  id serial primary key,
- name varchar(100) not null
+ name varchar(100) not null,
+ year date not null
 );
 
-insert into collections(id, name)
-values(1, 'super hits')
+insert into collections(id, name, year)
+values(1, 'super hits', '2013.01.01')
 
 --create many-to-many conection for collecions and tracks
 create table if not exists collection_track (
