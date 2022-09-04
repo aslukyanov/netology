@@ -2,12 +2,9 @@
 import sys
 import time
 
-sys.path.append('./application')
-sys.path.append('./application/db')
-
 from datetime import datetime
-from salary import calculate_salary
-from people import get_employees
+from application.salary import calculate_salary
+from application.db.people import get_employees
 
 
 # print(datetime.now())
