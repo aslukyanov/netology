@@ -6,12 +6,16 @@ class FlatIterator() :
         self.crete_flat_list(nested_list)
         self.current_element = -1
 
+
     def crete_flat_list(self, lst) :
-        for i in lst :
-            if isinstance(i, list) :
-                self.crete_flat_list(i)
+        new_lst = lst[::-1]
+        while len(new_lst) > 0 :
+            elem = new_lst.pop()
+            if isinstance(elem, list) :
+                self.crete_flat_list(elem)
             else :
-                self.flat_list.append(i)
+                self.flat_list.append(elem)
+
 
     def __iter__(self) :
         return self
@@ -44,11 +48,6 @@ if __name__ == '__main__' :
     #     print(i)
     for i in FlatIterator(nested_list2) :
         print(i)
-
-    result = [item for item in FlatIterator(nested_list2)]
-    print(result)
-
-
 
 
 
